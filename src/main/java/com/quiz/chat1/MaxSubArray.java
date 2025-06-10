@@ -6,20 +6,25 @@ package com.quiz.chat1;
  */
 public class MaxSubArray {
 
-    public static int getMaxSub(int [] arrays){
-        if(arrays.length==0){
+    public static int getMaxSub(int [] nums){
+        //數組為空的處理
+        if(nums.length==0){
             return 0;
         }
-        int currentMax=arrays[0];
-        int globalMax=arrays[0];
-        for (int i=1;i<arrays.length;i++){
-            int currentNode=arrays[i];
+        // 初始化当前连续子数组的最大和为数组第一个元素
+        int currentMax=nums[0]; //
+        int globalMax=nums[0];  //初始化全局最大子数组和为数组第一个元素
+        for (int i=1;i<nums.length;i++){
+            int currentNode=nums[i]; //
+            // 计算当前子数组和：将当前元素加到之前的最大连续子数组和上
             int temp=currentMax+currentNode;
+            // 判断是否应该延续之前的子数组，还是以当前元素重新开始
             if(temp>currentNode){
-                currentMax=temp;
+                currentMax=temp;// 如果加上当前元素后的和比当前元素大，则延续子数组
             }else {
-                currentMax=currentNode;
+                currentMax=currentNode;// 否则，从当前元素开始新的子数组
             }
+            // 更新全局最大子数组和
             if(currentMax>globalMax){
                 globalMax=currentMax;
             }
